@@ -25,6 +25,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
         </activity>
+        <activity android:name=".SecondActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2">
+        </activity>
 
     </application>
 

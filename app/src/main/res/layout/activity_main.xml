@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="请输入用户名"
-        android:text=""
+        android:text="7003"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="请输入密码"
-        android:text="qwe123456"
+        android:text="sstpc.2022"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_user"/>
@@ -63,6 +63,18 @@
         app:layout_constraintTop_toBottomOf="@id/et_pwd" />
 
     <Button
+        android:visibility="gone"
+        android:id="@+id/btn_goTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳到测试"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_pwd" />
+
+    <Button
+        android:visibility="gone"
         android:id="@+id/btn_goMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +85,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_goSip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,6 +96,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_goMsg" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_goContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,6 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_goSip" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_goMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,6 +118,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_goContact" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

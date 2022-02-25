@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText et_user,et_pwd;
     private Button btnLogin,btnGoMsg,btnGoSip,btnGoContact,btnGoMore,btn_logout;
+    private Button btnGoTest;
+
+    Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +49,18 @@ public class MainActivity extends AppCompatActivity {
                 //192.168.107.168  8080  jx1/qwe123456
 //                SipManager.getInstance().login(MainActivity.this, "124.161.95.203", "18080", "8506", "12345abc");//abc123123  Ncyjj@123!@##@!*
 
-                SipManager.getInstance().login(MainActivity.this, "39.107.94.125", "8080", "app3", "abc123");
+//                SipManager.getInstance().login(MainActivity.this, "39.107.94.125", "8080", "app3", "abc123");
 
                 SipManager.getInstance().login(MainActivity.this, "219.150.33.166", "18080", "7003", "sstpc.2022");
 
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                },2000);
 
             }
         });
@@ -60,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
                 SipManager.getInstance().logout();//destroyScSip();
                 //Process.killProcess(Process.myPid());
                 //finish();
+            }
+        });
+
+        btnGoTest = findViewById(R.id.btn_goTest);
+        btnGoTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG,"------跳转界面------");
+
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
             }
         });
 

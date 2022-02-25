@@ -10,9 +10,6 @@ import cn.scooper.sc_uni_app.view.main.MoreFragment;
 import cn.scooper.sc_uni_app.view.main.MsgFragment;
 import cn.scooper.sc_uni_app.view.recent.RecentCallFragment;
 
-/**
- * @author wuxingqi created on 2021/3/15
- */
 public class TestActivity extends BaseActivity {
     private static final String TAG = TestActivity.class.getCanonicalName();
 

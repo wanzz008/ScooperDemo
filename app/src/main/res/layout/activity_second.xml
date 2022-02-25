@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:fitsSystemWindows="true"-->
+<!--    android:clipToPadding="true"-->
+<!--    android:layout_margin="0dp"-->
+<!--    android:background="@color/sip_colorPrimary"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fl_test"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/view_background"/>-->
+
+<!--</LinearLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:orientation="vertical" >
+
+        <!-- 存放主要页面内容 -->
+
+        <FrameLayout
+            android:background="#ffffff"
+             android:id="@+id/maincontent"
+             android:layout_width="fill_parent"
+             android:layout_height="0dp"
+             android:layout_weight="1" >
+         </FrameLayout>
+
+         <!-- 底层菜单 -->
+
+         <android.support.v4.app.FragmentTabHost
+             android:id="@android:id/tabhost"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/white_with_alpha_50" >
+
+             <FrameLayout
+                android:id="@android:id/tabcontent"
+                 android:layout_width="0dp"
+                 android:layout_height="0dp"
+                 android:layout_weight="0" >
+             </FrameLayout>
+         </android.support.v4.app.FragmentTabHost>
+
+    </LinearLayout>
