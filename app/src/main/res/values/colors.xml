@@ -12,4 +12,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="blue">#0169EA</color>
+    <color name="yellow">#FF0</color>
+    <color name="black_alpha_10">#19041835</color>
+    <color name="black_alpha_18">#2e041835</color>
+    <color name="black_alpha_36">#5c041835</color>
+    <color name="black_alpha_54">#8a041835</color>
+    <color name="black_alpha_90">#e6041835</color>
+    <color name="background_color_light">#f0f1f3</color>
 </resources>
