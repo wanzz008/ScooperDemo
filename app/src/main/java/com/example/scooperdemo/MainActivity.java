@@ -13,8 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import cn.scooper.sc_uni_app.SipManager;
+import cn.scooper.sc_uni_app.broadcast.SipCallReceiver;
+import cn.showclear.sc_sip.event.SipRegEvent;
+import scooper.cn.sc_base.log.SCLog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
                 SipManager.getInstance().login(MainActivity.this, "219.150.33.166", "18080", username, pwd);
 
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                },2000);
 
             }
         });
@@ -165,6 +161,26 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(SipManager.SC_LOGIN_OTHER);
         registerReceiver(receiver,filter);
 
+        loginReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // 只有登录成功才会接收到广播 失败不会走到这里
+                SipRegEvent event = intent.getParcelableExtra(SipRegEvent.EXTRA_ARGS);
+                SCLog.e(TAG, "11111registration event code " + event.code + ", event reason "
+                        + event.reason);
+                if (event.code == 200){
+                    Intent intent2 = new Intent(MainActivity.this,SecondActivity.class);
+                    startActivity(intent2);
+                    finish();
+                }else {
+                    Toast.makeText(MainActivity.this, "登录失败：" + event.reason , Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter(SipRegEvent.ACTION_REGISTRATION_EVENT);
+        intentFilter.addAction(SipRegEvent.ACTION_REGISTRATION_EVENT);
+        registerReceiver(loginReceiver,intentFilter);
+
 
 
         //初始化通讯录完成进入主页面
@@ -175,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     BroadcastReceiver receiver;
+    BroadcastReceiver loginReceiver;
 
     @Override
     protected void onDestroy() {
@@ -182,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(receiver!=null){
             unregisterReceiver(receiver);
+        }
+        if(loginReceiver!=null){
+            unregisterReceiver(loginReceiver);
         }
 
         super.onDestroy();
