@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:background="@color/blue"
         android:id="@+id/rlActionBar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
@@ -16,18 +17,18 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:padding="10dp"
-            android:src="@drawable/icon_back_gray" />
+            android:padding="5dp"
+            android:src="@drawable/back_white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="应急预案"
-            android:textColor="#333"
+            android:textColor="#fff"
             android:textSize="18sp" />
 
         <View

@@ -5,10 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable/bt_selector.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21875" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_emergency_plan.xml" value="0.20260416666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_msds.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.12047101449275362" />
+        <entry key="app/src/main/res/layout/fragment_emergency_contact.xml" value="0.1984375" />
+        <entry key="app/src/main/res/layout/fragment_event.xml" value="0.1984375" />
+        <entry key="app/src/main/res/layout/tabcontent.xml" value="0.1272644927536232" />
       </map>
     </option>
   </component>

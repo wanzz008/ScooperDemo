@@ -4,7 +4,7 @@
 <!--       <item android:drawable="@drawable/ic_launcher" android:state_pressed="true"></item>-->
 <!--       <item android:drawable="@drawable/ic_launcher" android:state_selected="true"></item>-->
 
-        <item android:drawable="@color/blue" android:state_selected="true"></item>
-        <item android:drawable="@color/blue" android:state_pressed="true"></item>
+        <item android:drawable="@color/black_alpha_18" android:state_selected="true"></item>
+        <item android:drawable="@color/black_alpha_18" android:state_pressed="true"></item>
 
 </selector>

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                SipManager.getInstance().login(MainActivity.this, "39.107.94.125", "8080", "app3", "abc123");
 
-                SipManager.getInstance().login(MainActivity.this, "219.150.33.166", "18080", "7003", "sstpc.2022");
+                SipManager.getInstance().login(MainActivity.this, "219.150.33.166", "18080", username, pwd);
 
                 mHandler.postDelayed(new Runnable() {
                     @Override
