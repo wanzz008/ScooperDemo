@@ -17,7 +17,7 @@ import cn.scooper.sc_uni_app.view.recent.RecentCallFragment;
 public class SecondActivity extends BaseActivity {
 
     private FragmentTabHost fragmentTabHost;
-    private String texts[] = {"消息", "电话", "通讯录", "更多"};
+    private String texts[] = {"消息", "电话", "通讯录", "应急预案", "应急通讯", "更多"};
 //    private int imageButton[] = {
 //            R.drawable.bt_home_selector,
 //            R.drawable.bt_message_selector,
@@ -28,6 +28,8 @@ public class SecondActivity extends BaseActivity {
             MsgFragment.class,
             RecentCallFragment.class,
             ContactFragment.class,
+            FragmentEvent.class,
+            FragmentContact.class,
             MoreFragment.class,
     };
 
