@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import cn.scooper.sc_uni_app.SipManager;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     Handler mHandler = new Handler(Looper.getMainLooper());
 
+    boolean isEyeClose = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,22 @@ public class MainActivity extends AppCompatActivity {
 
         et_user=findViewById(R.id.et_user);
         et_pwd=findViewById(R.id.et_pwd);
+
+        final ImageView ivEye = findViewById(R.id.iv_eye);
+        ivEye .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isEyeClose = !isEyeClose ;
+                if (isEyeClose) {
+                    ivEye.setImageResource(R.drawable.eye_close);
+                    et_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    ivEye.setImageResource(R.drawable.eye_show);
+                    et_pwd.setTransformationMethod (HideReturnsTransformationMethod.getInstance());
+                }
+//                et_pwd.setSelection(etPassword.text?.length?:0)
+            }
+        });
 
         //登录
         btnLogin = findViewById(R.id.btn_login);
