@@ -8,8 +8,10 @@
         <entry key="app/src/main/res/drawable/shape_search_bg.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/activity_emergency_plan.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/activity_msds.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.20364583333333333" />
+        <entry key="app/src/main/res/layout/activity_second2.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.12047101449275362" />
         <entry key="app/src/main/res/layout/fragment_emergency_contact.xml" value="0.1984375" />

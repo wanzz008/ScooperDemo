@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.scooperdemo.adapter.EventAdapter;
 import com.example.scooperdemo.bean.EventResponse;
@@ -50,11 +51,16 @@ public class FragmentEvent extends Fragment {
             @Override
             public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
                 EventResponse body = response.body();
-                List<EventResponse.ContentBean> content = body.getContent();
-                if (content != null) {
-                    datas.addAll(content);
-                    eventAdapter.notifyDataSetChanged();
+                if (body != null ){
+                    List<EventResponse.ContentBean> content = body.getContent();
+                    if (content != null) {
+                        datas.addAll(content);
+                        eventAdapter.notifyDataSetChanged();
+                    }
+                }else {
+                    Toast.makeText(getContext(), "数据返回有误 code:" + response.code(), Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.scooperdemo.adapter.ContactAdapter;
 import com.example.scooperdemo.adapter.DeptAdapter;
@@ -140,26 +141,30 @@ public class FragmentContact extends Fragment {
             @Override
             public void onResponse(Call<ContactResponse> call, Response<ContactResponse> response) {
                 ContactResponse body = response.body();
-                allContact = body.getContent();
-                if (allContact != null) {
-                    for (int i = 0; i < allContact.size(); i++) {
-                        ContactResponse.ContentBean contentBean = allContact.get(i);
-                        String departmentName = contentBean.getDepartmentName();
-                        if (!depts.contains(departmentName)) {
-                            depts.add(departmentName);
-                            ArrayList<ContactResponse.ContentBean> contentBeans = new ArrayList<>();
-                            contentBeans.add(contentBean);
-                            hashMap.put(departmentName, contentBeans);
-                        } else {
-                            hashMap.get(departmentName).add(contentBean);
+                if (body != null){
+                    allContact = body.getContent();
+                    if (allContact != null) {
+                        for (int i = 0; i < allContact.size(); i++) {
+                            ContactResponse.ContentBean contentBean = allContact.get(i);
+                            String departmentName = contentBean.getDepartmentName();
+                            if (!depts.contains(departmentName)) {
+                                depts.add(departmentName);
+                                ArrayList<ContactResponse.ContentBean> contentBeans = new ArrayList<>();
+                                contentBeans.add(contentBean);
+                                hashMap.put(departmentName, contentBeans);
+                            } else {
+                                hashMap.get(departmentName).add(contentBean);
+                            }
+                        }
+                        deptAdapter.notifyDataSetChanged();
+                        if (depts.size() > 0) {
+                            lastClickDept = 0;
+                            contacts.addAll(hashMap.get(depts.get(0)));
+                            contactAdapter.notifyDataSetChanged();
                         }
                     }
-                    deptAdapter.notifyDataSetChanged();
-                    if (depts.size() > 0) {
-                        lastClickDept = 0;
-                        contacts.addAll(hashMap.get(depts.get(0)));
-                        contactAdapter.notifyDataSetChanged();
-                    }
+                }else {
+                    Toast.makeText(getContext(), "数据返回有误 code:" + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 

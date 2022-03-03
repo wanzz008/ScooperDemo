@@ -99,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG,"------跳转界面------");
 
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -190,8 +192,9 @@ public class MainActivity extends AppCompatActivity {
                         + event.reason);
                 if (event.code == 200){
                     Intent intent2 = new Intent(MainActivity.this,SecondActivity.class);
+                    intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent2);
-                    finish();
+//                    finish();  //如果finish了 拨号界面会看不到通话的弹窗
                 }else {
                     Toast.makeText(MainActivity.this, "登录失败：" + event.reason , Toast.LENGTH_SHORT).show();
                 }
