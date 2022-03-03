@@ -1,238 +1,78 @@
 package com.example.scooperdemo;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
+import android.support.v4.app.FragmentTabHost;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TabHost;
+import android.widget.TextView;
 
-import cn.scooper.sc_uni_app.SipManager;
-import cn.scooper.sc_uni_app.broadcast.SipCallReceiver;
-import cn.showclear.sc_sip.event.SipRegEvent;
-import scooper.cn.sc_base.log.SCLog;
+import cn.scooper.sc_uni_app.view.base.BaseActivity;
+import cn.scooper.sc_uni_app.view.contact.ContactFragment;
+import cn.scooper.sc_uni_app.view.main.MoreFragment;
+import cn.scooper.sc_uni_app.view.main.MsgFragment;
+import cn.scooper.sc_uni_app.view.recent.RecentCallFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private static final String TAG = MainActivity.class.getCanonicalName();
+    private FragmentTabHost fragmentTabHost;
+    private String texts[] = {"消息", "拨号", "通讯录", "应急事件", "应急通讯", "更多"};
+    private int imageButton[] = {
+            R.drawable.e,
+            R.drawable.f,
+            R.drawable.b,
+            R.drawable.c,
+            R.drawable.d,
+            R.drawable.a
+    };
 
-    private EditText et_user,et_pwd;
-    private Button btnLogin,btnGoMsg,btnGoSip,btnGoContact,btnGoMore,btn_logout;
-    private Button btnGoTest;
+    private Class fragmentArray[] = {
+            MsgFragment.class,
+            RecentCallFragment.class,
+            ContactFragment.class,
+            FragmentEvent.class,
+            FragmentContact.class,
+            MoreFragment.class,
+    };
 
-    Handler mHandler = new Handler(Looper.getMainLooper());
 
-    boolean isEyeClose = false;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        SipManager.getInstance().checkPermission(this);
-
-        et_user=findViewById(R.id.et_user);
-        et_pwd=findViewById(R.id.et_pwd);
-
-        final ImageView ivEye = findViewById(R.id.iv_eye);
-        ivEye .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isEyeClose = !isEyeClose ;
-                if (isEyeClose) {
-                    ivEye.setImageResource(R.drawable.eye_close);
-                    et_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                } else {
-                    ivEye.setImageResource(R.drawable.eye_show);
-                    et_pwd.setTransformationMethod (HideReturnsTransformationMethod.getInstance());
-                }
-//                et_pwd.setSelection(etPassword.text?.length?:0)
-            }
-        });
-
-        //登录
-        btnLogin = findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username=et_user.getText().toString();
-                String pwd=et_pwd.getText().toString();
-                Log.d("btnLogin","username="+username+","+pwd);
-//                SipManager.getInstance().login(MainActivity.this,"122.224.180.122", "18020",username,"1234abcd");
-//                SipManager.getInstance().login(MainActivity.this,"192.168.107.168", "8080","jx1","qwe123456");
-                //192.168.107.168  8080  jx1/qwe123456
-//                SipManager.getInstance().login(MainActivity.this, "124.161.95.203", "18080", "8506", "12345abc");//abc123123  Ncyjj@123!@##@!*
-
-//                SipManager.getInstance().login(MainActivity.this, "39.107.94.125", "8080", "app3", "abc123");
-
-                SipManager.getInstance().login(MainActivity.this, "219.150.33.166", "18080", username, pwd);
-
-
-            }
-        });
-
-        btn_logout = findViewById(R.id.btn_logout);
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("btnLogin","btn_logout btn_logout=");
-                SipManager.getInstance().logout();//destroyScSip();
-                //Process.killProcess(Process.myPid());
-                //finish();
-            }
-        });
-
-        btnGoTest = findViewById(R.id.btn_goTest);
-        btnGoTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"------跳转界面------");
-
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        //跳转消息界面
-        btnGoMsg = findViewById(R.id.btn_goMsg);
-        btnGoMsg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"------跳转消息界面------");
-
-                Intent intent = new Intent(MainActivity.this,TestActivity.class);
-                intent.putExtra(TestActivity.EXTRA_FRAGMENT,TestActivity.FRAGMENT_MSG);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        //跳转电话界面
-        btnGoSip = findViewById(R.id.btn_goSip);
-        btnGoSip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"------跳转电话界面------");
-
-                Intent intent = new Intent(MainActivity.this,TestActivity.class);
-                intent.putExtra(TestActivity.EXTRA_FRAGMENT,TestActivity.FRAGMENT_SIP);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        //跳转通讯录界面
-        btnGoContact = findViewById(R.id.btn_goContact);
-        btnGoContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"------跳转通讯录界面------");
-
-                SipManager.getInstance().updateContact();//通讯录更新，前提是已经登录了
-
-                //跳转通讯录界面
-                Intent intent = new Intent(MainActivity.this,TestActivity.class);
-                intent.putExtra(TestActivity.EXTRA_FRAGMENT,TestActivity.FRAGMENT_CONTACT);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        //跳转更多界面
-        btnGoMore = findViewById(R.id.btn_goMore);
-        btnGoMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,"------跳转更多界面------");
-
-                Intent intent = new Intent(MainActivity.this,TestActivity.class);
-                intent.putExtra(TestActivity.EXTRA_FRAGMENT,TestActivity.FRAGMENT_MORE);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equals(SipManager.SC_UPDATE_MSG)) {
-
-                    int cout = intent.getIntExtra(SipManager.SC_UPDATE_MSG_COUNT,0);
-                    //cout即为未读消息数量
-                }else if (intent.getAction().equals(SipManager.SC_LOGIN_OTHER)) {
-                    Log.d(TAG,"SC_LOGIN_OTHER");//在别处登录的广播
-                    SipManager.getInstance().logout();
-                    //Process.killProcess(Process.myPid());
-                }
-            }
-        };
-        IntentFilter filter = new IntentFilter(SipManager.SC_UPDATE_MSG);
-        filter.addAction(SipManager.SC_UPDATE_MSG);
-        filter.addAction(SipManager.SC_LOGIN_OTHER);
-        registerReceiver(receiver,filter);
-
-        loginReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                // 只有登录成功才会接收到广播 失败不会走到这里
-                SipRegEvent event = intent.getParcelableExtra(SipRegEvent.EXTRA_ARGS);
-                SCLog.e(TAG, "11111registration event code " + event.code + ", event reason "
-                        + event.reason);
-                if (event.code == 200){
-                    Intent intent2 = new Intent(MainActivity.this,SecondActivity.class);
-                    intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent2);
-//                    finish();  //如果finish了 拨号界面会看不到通话的弹窗
-                }else {
-                    Toast.makeText(MainActivity.this, "登录失败：" + event.reason , Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-        IntentFilter intentFilter = new IntentFilter(SipRegEvent.ACTION_REGISTRATION_EVENT);
-        intentFilter.addAction(SipRegEvent.ACTION_REGISTRATION_EVENT);
-        registerReceiver(loginReceiver,intentFilter);
-
-
-
-        //初始化通讯录完成进入主页面
-//        Intent intent = new Intent(sipManagerContext, SipMainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-//        sipManagerContext.startActivity(intent);
-
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
 
-    BroadcastReceiver receiver;
-    BroadcastReceiver loginReceiver;
-
     @Override
-    protected void onDestroy() {
-//        SipManager.getInstance().onDestroy();
+    public void initView() {
+        // 实例化tabhost
+        fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        fragmentTabHost.setup(this, getSupportFragmentManager(),
+                R.id.maincontent);
 
-        if(receiver!=null){
-            unregisterReceiver(receiver);
+        for (int i = 0; i < texts.length; i++) {
+            TabHost.TabSpec spec = fragmentTabHost.newTabSpec(texts[i]).setIndicator(getView(i));
+
+            fragmentTabHost.addTab(spec, fragmentArray[i], null);
+
+            //设置背景(必须在addTab之后，由于需要子节点（底部菜单按钮）否则会出现空指针异常)
+            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.bt_selector);
         }
-        if(loginReceiver!=null){
-            unregisterReceiver(loginReceiver);
-        }
-
-        super.onDestroy();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SipManager.getInstance().loadMsg();
+    private View getView(int i) {
+        //取得布局实例
+        View view = View.inflate(MainActivity.this, R.layout.tabcontent, null);
+
+        //取得布局对象
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        TextView textView = (TextView) view.findViewById(R.id.text);
+
+        //设置图标
+        imageView.setImageResource(imageButton[i]);
+//        imageView.setImageResource(R.drawable.ic_launcher);
+        //设置标题
+        textView.setText(texts[i]);
+        return view;
     }
+
+
 }

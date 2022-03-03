@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"></activity>
         <activity
-            android:name=".SecondActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"></activity>
         <activity
@@ -39,15 +39,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
 
-        <activity
-            android:name=".Test2Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2" />
 
-        <activity
-            android:name=".Test3Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2" />
         <activity
             android:name=".SecondActivity2"
             android:launchMode="singleTop"
