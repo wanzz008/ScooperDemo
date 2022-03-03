@@ -41,7 +41,7 @@
         android:layout_height="35dp"
         android:layout_margin="10dp"
         android:background="@drawable/shape_search_bg"
-        android:drawableStart="@drawable/btn_search"
+        android:drawableStart="@drawable/search1"
         android:drawablePadding="10dp"
         android:hint="请输入"
         android:imeOptions="actionSearch"
