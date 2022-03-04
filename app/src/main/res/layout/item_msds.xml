@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:background="@color/gray_background"
+    android:paddingBottom="10dp">
 
     <LinearLayout
+        android:padding="10dp"
         android:id="@+id/llTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -52,10 +54,10 @@
 
     <LinearLayout
         android:id="@+id/ll_more"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#ffcccc"
+        android:background="#fff"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -67,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="主要用途："
-                android:textColor="#333" />
+                android:textColor="#72555C" />
 
             <TextView
                 android:id="@+id/mainApplication"
@@ -85,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="健康危害："
-                android:textColor="#333" />
+                android:textColor="#72555C" />
 
             <TextView
                 android:id="@+id/healthRisk"
@@ -103,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="特别提示："
-                android:textColor="#333" />
+                android:textColor="#72555C" />
 
             <TextView
                 android:id="@+id/healthRisk2"
@@ -121,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="理化特性："
-                android:textColor="#333" />
+                android:textColor="#72555C" />
 
             <TextView
                 android:id="@+id/physicochemicalProperty"
@@ -139,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="危险性描述："
-                android:textColor="#333" />
+                android:textColor="#72555C" />
 
             <TextView
                 android:id="@+id/riskCodes"

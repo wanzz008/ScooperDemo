@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp">
 
     <TextView
         android:id="@+id/tvUserName"
@@ -38,6 +40,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintTop_toBottomOf="@+id/tvPhone"
         android:background="@color/background_color_light" />
